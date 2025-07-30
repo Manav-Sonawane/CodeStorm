@@ -176,6 +176,8 @@ nav ul li a:focus {
   margin: 2rem auto;
   box-shadow: 0 4px 32px #000a;
   animation: fadeInUp 1.5s;
+  overflow-x: hidden; /* Prevent cards from overflowing horizontally */
+  position: relative;
 }
 
 .past-events h2 {
@@ -192,10 +194,19 @@ nav ul li a:focus {
   overflow-x: auto;
   scroll-behavior: smooth;
   padding-bottom: 1rem;
+  /* Hide scrollbar for a cleaner look */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+  max-width: 100%;
+}
+.carousel::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Webkit */
 }
 
 .carousel-item {
   min-width: 320px;
+  max-width: 350px;
+  flex: 0 0 auto;
   background: #181818;
   border-left: 6px solid #e10600;
   border-radius: 12px;
@@ -203,24 +214,19 @@ nav ul li a:focus {
   box-shadow: 0 2px 16px #000a;
   transition: transform 0.3s, box-shadow 0.3s;
   animation: cardPop 1s;
+  will-change: transform;
+  /* Prevent overflow on scale/translate */
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+  /* Prevent card from growing out of section */
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .carousel-item:hover {
   transform: translateY(-10px) scale(1.04) rotate(-1deg);
   box-shadow: 0 8px 32px #e10600aa;
-}
-
-.carousel-item h3 {
-  color: #e10600;
-  font-size: 1.3rem;
-  margin-bottom: 0.7rem;
-  letter-spacing: 1px;
-}
-
-.carousel-item p {
-  color: #eee;
-  font-size: 1rem;
-  line-height: 1.5;
+  z-index: 2; /* Bring hovered card above others */
 }
 
 @keyframes cardPop {
@@ -307,9 +313,11 @@ footer {
   .carousel {
     flex-direction: column;
     gap: 1.5rem;
+    max-width: 100%;
   }
   .carousel-item {
     min-width: 0;
+    max-width: 100%;
     width: 100%;
   }
 }
@@ -333,5 +341,8 @@ footer {
   .hero button {
     font-size: 1rem;
     padding: 0.7rem 1.5rem;
+  }
+  .carousel-item {
+    padding: 1.2rem 0.7rem;
   }
 }
