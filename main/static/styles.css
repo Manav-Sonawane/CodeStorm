@@ -71,16 +71,12 @@ nav ul li a:focus {
 
 /* Hero Section */
 .hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 45vh;
   background: linear-gradient(120deg, #000 60%, #e10600 100%);
   color: #fff;
-  text-align: center;
-  padding: 4rem 2rem 3rem 2rem;
+  min-height: 45vh;
   animation: heroPop 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  position: relative;
+  z-index: 1;
 }
 
 @keyframes heroPop {
@@ -95,13 +91,9 @@ nav ul li a:focus {
 }
 
 .hero h2 {
-  font-size: 3.5rem;
-  font-weight: 900;
-  letter-spacing: 4px;
-  color: #fff;
   text-shadow: 0 4px 24px #e10600cc, 0 1px 0 #000;
-  margin-bottom: 0.5rem;
   animation: textGlow 2s infinite alternate;
+  letter-spacing: 4px;
 }
 
 @keyframes textGlow {
@@ -240,6 +232,36 @@ nav ul li a:focus {
   }
 }
 
+/* Past Events Carousel Cards (no carousel-inner) */
+.past-events .card {
+  border-left: 6px solid #e10600;
+  border-radius: 1rem;
+  box-shadow: 0 2px 16px #000a;
+  transition: transform 0.3s, box-shadow 0.3s;
+  margin-bottom: 1rem;
+  will-change: transform;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  margin-right: 0; /* Remove extra margin for flex gap */
+}
+
+.past-events .card:hover {
+  transform: translateY(-10px) scale(1.04) rotate(-1deg);
+  box-shadow: 0 8px 32px #e10600aa;
+  z-index: 2;
+}
+
+/* Make sure cards never overflow the section horizontally */
+.past-events .d-flex {
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.past-events .d-flex::-webkit-scrollbar {
+  display: none;
+}
+
 /* Follow Us Section */
 .follow-us {
   background: #181818;
@@ -291,7 +313,20 @@ footer {
   animation: fadeInUp 2s;
 }
 
+/* Custom styles for CodeStorm with Bootstrap */
+
 /* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -310,6 +345,12 @@ footer {
     gap: 1rem;
     padding: 1rem 1.5rem;
   }
+  .about,
+  .past-events,
+  .follow-us {
+    border-radius: 1rem;
+    padding: 1.5rem 1rem;
+  }
   .carousel {
     flex-direction: column;
     gap: 1.5rem;
@@ -320,6 +361,16 @@ footer {
     max-width: 100%;
     width: 100%;
   }
+  .past-events .d-flex {
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    align-items: stretch !important;
+  }
+  .past-events .card {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
 }
 
 @media (max-width: 600px) {
@@ -327,22 +378,19 @@ footer {
   .past-events,
   .follow-us {
     padding: 1.2rem 0.7rem;
-    border-radius: 10px;
+    border-radius: 0.7rem;
   }
   nav h1 {
     font-size: 1.5rem;
   }
   .hero h2 {
-    font-size: 2.2rem;
+    font-size: 2.2rem !important;
   }
   .hero p {
-    font-size: 1rem;
+    font-size: 1rem !important;
   }
-  .hero button {
-    font-size: 1rem;
-    padding: 0.7rem 1.5rem;
-  }
-  .carousel-item {
-    padding: 1.2rem 0.7rem;
+  .btn {
+    font-size: 1rem !important;
+    padding: 0.7rem 1.5rem !important;
   }
 }

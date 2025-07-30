@@ -4,32 +4,75 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CodeStorm</title>
-
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
     <link rel="stylesheet" href="../static/styles.css" />
   </head>
   <body>
     <!-- Navbar -->
-    <nav>
-      <h1>CodeStorm</h1>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/codeissance">Codeissance</a></li>
-        <li><a href="/past-events">Past Events</a></li>
-        <li><a href="/follow-us">Follow Us</a></li>
-      </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black shadow-lg">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-danger" href="#">CodeStorm</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav gap-2">
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="/about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/codeissance">Codeissance</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/past-events">Past Events</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/follow-us">Follow Us</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-      <h2>CODESTORM</h2>
-      <p>Scripting the Storm!</p>
-      <button>Codeissance#</button>
+    <section
+      class="hero d-flex flex-column align-items-center justify-content-center text-center py-5"
+    >
+      <h2 class="display-3 fw-bold">CODESTORM</h2>
+      <p class="lead text-danger mb-4">Scripting the Storm!</p>
+      <a
+        href="/codeissance"
+        class="btn btn-lg btn-danger px-5 py-2 fw-bold shadow"
+        >Codeissance#</a
+      >
     </section>
 
     <!-- About Section -->
-    <section class="about">
-      <h2>About CodeStorm</h2>
+    <section
+      class="about container my-5 py-4 rounded-4 shadow-lg bg-dark text-white"
+    >
+      <h2 class="text-danger mb-3">About CodeStorm</h2>
       <p>
         TSEC CodeStorm stands out as a unique platform to help develop coding as
         well as presentation skills, their mantra being “Opportunities don’t
@@ -43,63 +86,100 @@
       </p>
     </section>
 
-    <!-- Past Events Carousal-->
-    <section class="past-events">
-      <h2>Past Events</h2>
-      <div class="carousel">
-        <div class="carousel-item">
-          <h3>Technovation 24</h3>
-          <p>
-            Technovation’24 was the biggest Virtual Project Exhibition of TSEC
-            conducted via the offline mode. It was an all-Mumbai level online
-            project presentation to showcase the students’ innovative and
-            creative projects as well as provide them an opportunity to enhance
-            their presentation skills.
-          </p>
-        </div>
-        <div class="carousel-item">
-          <h3>Codeissance 2024 Hackathon</h3>
-          <p>
-            Our prime event was the annual Hackathon which received a great
-            response from the participants as it helped expose them to various
-            technologies while testing their pitching skills. This was a 24-
-            hour offline hackathon in which students of various colleges
-            participated in domains of AI/ML, Web/App Developmen.
-          </p>
-        </div>
-        <div class="carousel-item">
-          <h3>Treasure Hunt 2022</h3>
-          <p>
-            TSEC CodeStorm organized the biggest Treasure Hunt at Thadomal
-            Shahani Engineering College in the offline mode after a period of
-            two years on 4th March 2022. This event was exclusively for the
-            First-Year students of TSEC. The event was a success with the
-            participation of 43 teams competing against each other to showcase
-            their talent.
-          </p>
+    <!-- Past Events Carousel -->
+    <section class="past-events container my-5 py-4 rounded-4 shadow-lg">
+      <h2 class="text-white mb-4 text-center text-shadow">Past Events</h2>
+      <div id="eventsCarousel" class="carousel slide" data-bs-ride="carousel">
+        <!-- Remove carousel-inner, use flex row for cards -->
+        <div
+          class="d-flex flex-row flex-nowrap overflow-auto gap-4 justify-content-center align-items-stretch"
+        >
+          <div
+            class="card bg-dark text-white border-danger"
+            style="min-width: 320px; max-width: 500px"
+          >
+            <div class="card-body">
+              <h3 class="card-title text-danger">Technovation 24</h3>
+              <p class="card-text">
+                Technovation’24 was the biggest Virtual Project Exhibition of
+                TSEC conducted via the offline mode. It was an all-Mumbai level
+                online project presentation to showcase the students’ innovative
+                and creative projects as well as provide them an opportunity to
+                enhance their presentation skills.
+              </p>
+            </div>
+          </div>
+          <div
+            class="card bg-dark text-white border-danger"
+            style="min-width: 320px; max-width: 500px"
+          >
+            <div class="card-body">
+              <h3 class="card-title text-danger">Codeissance 2024 Hackathon</h3>
+              <p class="card-text">
+                Our prime event was the annual Hackathon which received a great
+                response from the participants as it helped expose them to
+                various technologies while testing their pitching skills. This
+                was a 24- hour offline hackathon in which students of various
+                colleges participated in domains of AI/ML, Web/App Developmen.
+              </p>
+            </div>
+          </div>
+          <div
+            class="card bg-dark text-white border-danger"
+            style="min-width: 320px; max-width: 500px"
+          >
+            <div class="card-body">
+              <h3 class="card-title text-danger">Treasure Hunt 2022</h3>
+              <p class="card-text">
+                TSEC CodeStorm organized the biggest Treasure Hunt at Thadomal
+                Shahani Engineering College in the offline mode after a period
+                of two years on 4th March 2022. This event was exclusively for
+                the First-Year students of TSEC. The event was a success with
+                the participation of 43 teams competing against each other to
+                showcase their talent.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Follow Us Section -->
-    <section class="follow-us">
-      <h2>Follow Us</h2>
-      <div class="social-links">
-        <a href="https://www.instagram.com/tsec_codestorm/">
-          <i class="fa-brands fa-instagram"></i>
+    <section
+      class="follow-us container my-5 py-4 rounded-4 shadow-lg bg-dark text-center"
+    >
+      <h2 class="text-danger mb-3">Follow Us</h2>
+      <div class="d-flex justify-content-center gap-4 fs-2">
+        <a
+          href="https://www.instagram.com/tsec_codestorm/"
+          class="text-white social-link"
+          aria-label="Instagram"
+        >
+          <i class="fab fa-instagram"></i>
         </a>
-        <a href="https://www.facebook.com/tsec.codestorm/">
-          <i class="fa-brands fa-facebook"></i>
+        <a
+          href="https://www.facebook.com/tsec.codestorm/"
+          class="text-white social-link"
+          aria-label="Facebook"
+        >
+          <i class="fab fa-facebook"></i>
         </a>
-        <a href="https://www.linkedin.com/company/tsec-codestorm/">
-          <i class="fa-brands fa-linkedin"></i>
+        <a
+          href="https://www.linkedin.com/company/tsec-codestorm/"
+          class="text-white social-link"
+          aria-label="LinkedIn"
+        >
+          <i class="fab fa-linkedin"></i>
         </a>
       </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-      <p>&copy; 2024 TSEC CodeStorm. All rights reserved.</p>
+    <footer class="bg-black text-white text-center py-3 mt-4 shadow-lg">
+      <p class="mb-0">&copy; 2024 TSEC CodeStorm. All rights reserved.</p>
     </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
