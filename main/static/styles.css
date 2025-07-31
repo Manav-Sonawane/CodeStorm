@@ -18,7 +18,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(90deg, #000 60%, #e10600 100%);
+  background: black;
   padding: 1.2rem 3rem;
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
   animation: navFadeIn 1s ease;
@@ -71,12 +71,13 @@ nav ul li a:focus {
 
 /* Hero Section */
 .hero {
-  background: linear-gradient(120deg, #000 60%, #e10600 100%);
+  background: black;
   color: #fff;
   min-height: 45vh;
   animation: heroPop 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   position: relative;
   z-index: 1;
+  isolation: isolate;
 }
 
 @keyframes heroPop {
@@ -168,7 +169,7 @@ nav ul li a:focus {
   margin: 2rem auto;
   box-shadow: 0 4px 32px #000a;
   animation: fadeInUp 1.5s;
-  overflow-x: hidden; /* Prevent cards from overflowing horizontally */
+  overflow-x: hidden;
   position: relative;
 }
 
@@ -186,13 +187,12 @@ nav ul li a:focus {
   overflow-x: auto;
   scroll-behavior: smooth;
   padding-bottom: 1rem;
-  /* Hide scrollbar for a cleaner look */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE 10+ */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   max-width: 100%;
 }
 .carousel::-webkit-scrollbar {
-  display: none; /* Chrome/Safari/Webkit */
+  display: none;
 }
 
 .carousel-item {
@@ -206,11 +206,8 @@ nav ul li a:focus {
   box-shadow: 0 2px 16px #000a;
   transition: transform 0.3s, box-shadow 0.3s;
   animation: cardPop 1s;
-  will-change: transform;
-  /* Prevent overflow on scale/translate */
   margin-bottom: 1rem;
   box-sizing: border-box;
-  /* Prevent card from growing out of section */
   overflow-wrap: break-word;
   word-break: break-word;
 }
@@ -218,7 +215,7 @@ nav ul li a:focus {
 .carousel-item:hover {
   transform: translateY(-10px) scale(1.04) rotate(-1deg);
   box-shadow: 0 8px 32px #e10600aa;
-  z-index: 2; /* Bring hovered card above others */
+  z-index: 2;
 }
 
 @keyframes cardPop {
@@ -230,36 +227,6 @@ nav ul li a:focus {
     opacity: 1;
     transform: scale(1);
   }
-}
-
-/* Past Events Carousel Cards (no carousel-inner) */
-.past-events .card {
-  border-left: 6px solid #e10600;
-  border-radius: 1rem;
-  box-shadow: 0 2px 16px #000a;
-  transition: transform 0.3s, box-shadow 0.3s;
-  margin-bottom: 1rem;
-  will-change: transform;
-  overflow-wrap: break-word;
-  word-break: break-word;
-  margin-right: 0; /* Remove extra margin for flex gap */
-}
-
-.past-events .card:hover {
-  transform: translateY(-10px) scale(1.04) rotate(-1deg);
-  box-shadow: 0 8px 32px #e10600aa;
-  z-index: 2;
-}
-
-/* Make sure cards never overflow the section horizontally */
-.past-events .d-flex {
-  overflow-x: auto;
-  padding-bottom: 1rem;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-.past-events .d-flex::-webkit-scrollbar {
-  display: none;
 }
 
 /* Follow Us Section */
@@ -313,20 +280,7 @@ footer {
   animation: fadeInUp 2s;
 }
 
-/* Custom styles for CodeStorm with Bootstrap */
-
 /* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -393,4 +347,26 @@ footer {
     font-size: 1rem !important;
     padding: 0.7rem 1.5rem !important;
   }
+}
+
+/* ============================ */
+/* Cursor Spotlight Glow Layer */
+/* ============================ */
+
+#cursor-spotlight {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+
+  background: radial-gradient(
+    circle 150px at center,
+    transparent 0%,
+    rgba(0, 0, 0, 0.95) 80%
+  );
+
+  transition: background 0.02s ease-out;
 }
