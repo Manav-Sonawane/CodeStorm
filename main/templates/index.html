@@ -21,10 +21,10 @@
     <link rel="stylesheet" href="../static/styles.css" />
   </head>
   <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-black shadow-lg">
+    <!-- Floating Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-lg">
       <div class="container">
-        <a class="navbar-brand fw-bold text-danger" href="#">CodeStorm</a>
+        <a class="navbar-brand fw-bold text-danger" href="#home">CodeStorm</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -38,18 +38,18 @@
           id="navbarNav"
         >
           <ul class="navbar-nav gap-2">
-            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
             <li class="nav-item">
-              <a class="nav-link" href="/about">About</a>
+              <a class="nav-link" href="#about">About</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/codeissance">Codeissance</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/past-events">Past Events</a>
+              <a class="nav-link" href="#past-events">Past Events</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/follow-us">Follow Us</a>
+              <a class="nav-link" href="#follow-us">Follow Us</a>
             </li>
           </ul>
         </div>
@@ -58,43 +58,53 @@
 
     <!-- Hero Section -->
     <section
-      class="hero d-flex flex-column align-items-center justify-content-center text-center py-5"
+      id="home"
+      class="hero d-flex flex-column align-items-center justify-content-center text-center"
     >
-      <h2 class="display-3 fw-bold">CODESTORM</h2>
-      <p class="lead text-danger mb-4">Scripting the Storm!</p>
+      <canvas id="background-canvas"></canvas>
+      <h2 class="display-1 fw-bold mb-4">CODESTORM</h2>
+      <p class="lead text-danger mb-5 fs-2">Scripting the Storm!</p>
       <a
         href="/codeissance"
-        class="btn btn-lg btn-danger px-5 py-2 fw-bold shadow"
+        class="btn btn-lg btn-danger px-5 py-3 fw-bold shadow fs-4"
         >Codeissance#</a
       >
     </section>
 
     <!-- About Section -->
     <section
-      class="about container my-5 py-4 rounded-4 shadow-lg bg-dark text-white"
+      id="about"
+      class="about container my-5 py-5 rounded-4 shadow-lg bg-dark text-white fade-in-section"
     >
-      <h2 class="text-danger mb-3">About CodeStorm</h2>
-      <p>
-        TSEC CodeStorm stands out as a unique platform to help develop coding
-        and presentation skills. Their mantra: “Opportunities don’t happen, you
-        create them.” They organize workshops and hackathons that propel
-        students toward a glorious tech career.
-      </p>
+      <div class="row align-items-center h-100">
+        <div class="col-12">
+          <h2 class="text-danger mb-4 display-4">About CodeStorm</h2>
+          <p class="fs-5 lh-lg">
+            TSEC CodeStorm stands out as a unique platform to help develop
+            coding and presentation skills. Their mantra: "Opportunities don't
+            happen, you create them." They organize workshops and hackathons
+            that propel students toward a glorious tech career.
+          </p>
+        </div>
+      </div>
     </section>
 
     <!-- Past Events -->
-    <section class="past-events container my-5 py-4 rounded-4 shadow-lg">
-      <h2 class="text-white mb-4 text-center">Past Events</h2>
+    <section
+      id="past-events"
+      class="past-events container my-5 py-5 rounded-4 shadow-lg fade-in-section"
+    >
+      <h2 class="text-white mb-5 text-center display-4">Past Events</h2>
       <div
-        class="d-flex flex-row flex-nowrap overflow-auto gap-4 justify-content-center align-items-stretch"
+        class="d-flex flex-row flex-nowrap overflow-auto gap-4 justify-content-center align-items-center"
       >
         <div
           class="card bg-dark text-white border-danger"
-          style="min-width: 320px; max-width: 500px"
+          style="min-width: 320px; max-width: 500px; flex-shrink: 0"
         >
-          <div class="card-body">
-            <h3 class="card-title text-danger">Technovation 24</h3>
-            <p class="card-text">
+          <div class="card-body d-flex flex-column justify-content-center">
+            <h3 class="card-title text-danger fs-3 mb-3">Technovation 24</h3>
+            <p class="card-text fs-5">
               A virtual project exhibition to showcase creative ideas and
               sharpen presentation skills.
             </p>
@@ -102,11 +112,13 @@
         </div>
         <div
           class="card bg-dark text-white border-danger"
-          style="min-width: 320px; max-width: 500px"
+          style="min-width: 320px; max-width: 500px; flex-shrink: 0"
         >
-          <div class="card-body">
-            <h3 class="card-title text-danger">Codeissance 2024 Hackathon</h3>
-            <p class="card-text">
+          <div class="card-body d-flex flex-column justify-content-center">
+            <h3 class="card-title text-danger fs-3 mb-3">
+              Codeissance 2024 Hackathon
+            </h3>
+            <p class="card-text fs-5">
               A 24-hour hackathon featuring domains like AI/ML, web dev, and
               more.
             </p>
@@ -114,11 +126,11 @@
         </div>
         <div
           class="card bg-dark text-white border-danger"
-          style="min-width: 320px; max-width: 500px"
+          style="min-width: 320px; max-width: 500px; flex-shrink: 0"
         >
-          <div class="card-body">
-            <h3 class="card-title text-danger">Treasure Hunt 2022</h3>
-            <p class="card-text">
+          <div class="card-body d-flex flex-column justify-content-center">
+            <h3 class="card-title text-danger fs-3 mb-3">Treasure Hunt 2022</h3>
+            <p class="card-text fs-5">
               A fun, team-based competition held offline for TSEC's First-Year
               students.
             </p>
@@ -129,27 +141,33 @@
 
     <!-- Follow Us -->
     <section
-      class="follow-us container my-5 py-4 rounded-4 shadow-lg bg-dark text-center"
+      id="follow-us"
+      class="follow-us container my-5 py-5 rounded-4 shadow-lg bg-dark text-center fade-in-section"
     >
-      <h2 class="text-danger mb-3">Follow Us</h2>
-      <div class="d-flex justify-content-center gap-4 fs-2">
-        <a href="https://www.instagram.com/tsec_codestorm/" class="text-white"
-          ><i class="fab fa-instagram"></i
-        ></a>
-        <a href="https://www.facebook.com/tsec.codestorm/" class="text-white"
-          ><i class="fab fa-facebook"></i
-        ></a>
-        <a
-          href="https://www.linkedin.com/company/tsec-codestorm/"
-          class="text-white"
-          ><i class="fab fa-linkedin"></i
-        ></a>
+      <div class="d-flex flex-column justify-content-center h-100">
+        <h2 class="text-danger mb-4 display-4">Follow Us</h2>
+        <div
+          class="d-flex justify-content-center gap-5"
+          style="font-size: 4rem"
+        >
+          <a href="https://www.instagram.com/tsec_codestorm/" class="text-white"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="https://www.facebook.com/tsec.codestorm/" class="text-white"
+            ><i class="fab fa-facebook"></i
+          ></a>
+          <a
+            href="https://www.linkedin.com/company/tsec-codestorm/"
+            class="text-white"
+            ><i class="fab fa-linkedin"></i
+          ></a>
+        </div>
       </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black text-white text-center py-3 mt-4 shadow-lg">
-      <p class="mb-0">&copy; 2024 TSEC CodeStorm. All rights reserved.</p>
+    <footer class="bg-black text-white text-center py-4 mt-4 shadow-lg">
+      <p class="mb-0 fs-5">&copy; 2024 TSEC CodeStorm. All rights reserved.</p>
     </footer>
 
     <!-- Bootstrap JS -->
@@ -157,21 +175,180 @@
 
     <!-- Cursor Spotlight JS -->
     <script>
+      // Create spotlight overlay
       const spotlight = document.createElement("div");
       spotlight.id = "cursor-spotlight";
       document.body.appendChild(spotlight);
 
+      // Create custom cursor sphere
+      const cursorSphere = document.createElement("div");
+      cursorSphere.id = "cursor-sphere";
+      document.body.appendChild(cursorSphere);
+
       document.addEventListener("mousemove", (e) => {
+        // Update spotlight position
         spotlight.style.background = `
-        radial-gradient(
-          circle at ${e.clientX}px ${e.clientY}px,
-          rgba(225, 6, 0, 0.85) 0%,
-          rgba(225, 6, 0, 0.3) 20%,
-          rgba(0, 0, 0, 0.95) 60%,
-          rgba(0, 0, 0, 1) 100%
-        )
-      `;
+          radial-gradient(
+            circle 400px at ${e.clientX}px ${e.clientY}px,
+            transparent 0%,
+            rgba(0,0,0,0.05) 30%,
+            rgba(0,0,0,0.4) 70%,
+            rgba(0,0,0,0.6) 100%
+          )
+        `;
+
+        // Update cursor sphere position
+        cursorSphere.style.left = e.clientX - 15 + "px";
+        cursorSphere.style.top = e.clientY - 15 + "px";
       });
+
+      // Hide default cursor
+      document.body.style.cursor = "none";
+
+      // Intersection Observer for fade-in animations
+      const observerOptions = {
+        threshold: 0.2,
+        rootMargin: "0px 0px -100px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, observerOptions);
+
+      // Observe all fade-in sections
+      document.querySelectorAll(".fade-in-section").forEach((section) => {
+        observer.observe(section);
+      });
+
+      // Animated Background
+      const canvas = document.getElementById("background-canvas");
+      const ctx = canvas.getContext("2d");
+
+      let mouseX = 0;
+      let mouseY = 0;
+
+      // Set canvas size
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      resizeCanvas();
+      window.addEventListener("resize", resizeCanvas);
+
+      // Particle system
+      const particles = [];
+      const particleCount = 80;
+      const connectionDistance = 120;
+
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.vx = (Math.random() - 0.5) * 0.5;
+          this.vy = (Math.random() - 0.5) * 0.5;
+          this.size = Math.random() * 2 + 1;
+        }
+
+        update() {
+          // Move particles
+          this.x += this.vx;
+          this.y += this.vy;
+
+          // Mouse attraction
+          const dx = mouseX - this.x;
+          const dy = mouseY - this.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 200) {
+            const force = (200 - distance) / 200;
+            this.vx += (dx / distance) * force * 0.03;
+            this.vy += (dy / distance) * force * 0.03;
+          }
+
+          // Boundary check
+          if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+          if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+
+          // Keep particles within bounds
+          this.x = Math.max(0, Math.min(canvas.width, this.x));
+          this.y = Math.max(0, Math.min(canvas.height, this.y));
+
+          // Damping
+          this.vx *= 0.98;
+          this.vy *= 0.98;
+        }
+
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(225, 6, 0, 0.8)";
+          ctx.fill();
+
+          // Add glow effect
+          ctx.shadowColor = "#e10600";
+          ctx.shadowBlur = 10;
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        }
+      }
+
+      // Create particles
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+
+      // Draw connections
+      function drawConnections() {
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < connectionDistance) {
+              const opacity =
+                (connectionDistance - distance) / connectionDistance;
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = `rgba(225, 6, 0, ${opacity * 0.3})`;
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      // Animation loop
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Update and draw particles
+        particles.forEach((particle) => {
+          particle.update();
+          particle.draw();
+        });
+
+        // Draw connections
+        drawConnections();
+
+        requestAnimationFrame(animate);
+      }
+
+      // Track mouse movement
+      document.addEventListener("mousemove", (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
+      });
+
+      // Start animation
+      animate();
     </script>
   </body>
 </html>
