@@ -21,6 +21,9 @@
               float: "float 3s ease-in-out infinite",
               glow: "glow 2s ease-in-out infinite alternate",
               "bounce-slow": "bounce 3s infinite",
+              typewriter: "typewriter 3s steps(40, end) 1s both",
+              "typewriter-tagline": "typewriter 2s steps(30, end) 4.5s both",
+              blink: "blink 1s infinite",
             },
             keyframes: {
               fadeInUp: {
@@ -37,6 +40,14 @@
                 },
                 "100%": { textShadow: "0 0px 40px #fff, 0 1px 0 #e10600" },
               },
+              typewriter: {
+                "0%": { width: "0" },
+                "100%": { width: "100%" },
+              },
+              blink: {
+                "0%, 50%": { borderColor: "transparent" },
+                "51%, 100%": { borderColor: "#e10600" },
+              },
             },
           },
         },
@@ -51,6 +62,67 @@
 
     <!-- Your Custom CSS -->
     <link rel="stylesheet" href="../static/styles.css" />
+
+    <!-- Custom Typewriter Styles -->
+    <style>
+      @keyframes typewriter {
+        0% {
+          width: 0;
+        }
+        100% {
+          width: 100%;
+        }
+      }
+
+      @keyframes typewriter-tagline {
+        0% {
+          width: 0;
+          opacity: 1;
+        }
+        100% {
+          width: 100%;
+          opacity: 1;
+        }
+      }
+
+      @keyframes blink {
+        0%,
+        50% {
+          border-color: transparent;
+        }
+        51%,
+        100% {
+          border-color: #e10600;
+        }
+      }
+
+      .typewriter-container {
+        display: inline-block;
+        position: relative;
+      }
+
+      .typewriter-text {
+        overflow: hidden;
+        white-space: nowrap;
+        border-right: 4px solid #e10600;
+        animation: typewriter 4s steps(9, end) 1s both, blink 1s infinite 1s;
+      }
+
+      .typewriter-tagline {
+        overflow: hidden;
+        white-space: nowrap;
+        border-right: 4px solid #e10600;
+        opacity: 0;
+        animation: typewriter-tagline 3s steps(21, end) 0s both,
+          blink 1s infinite 0s; /* <-- delay changed to 0s */
+      }
+
+      /* Remove cursor after animation completes */
+      .typewriter-text.animation-complete,
+      .typewriter-tagline.animation-complete {
+        border-right: none;
+      }
+    </style>
   </head>
   <body
     class="bg-gradient-to-br from-darker-bg to-gray-800 text-white min-h-screen"
@@ -59,103 +131,64 @@
     <nav
       class="fixed top-5 left-1/2 transform -translate-x-1/2 w-11/12 max-w-6xl bg-black/30 backdrop-blur-lg rounded-full border border-red-primary/20 z-40 animate-fade-in-up"
     >
-      <div class="flex items-center justify-between px-8 py-4">
-        <a
-          href="#home"
-          class="text-2xl font-black text-red-primary tracking-wide hover:text-white transition-colors duration-300 animate-glow"
-        >
-          CodeStorm
+      <div class="flex items-center justify-between px-4 py-2 w-full">
+        <!-- Reduced px-8 py-4 to px-4 py-2 -->
+        <!-- Logo at extreme left -->
+        <a href="#home" class="flex items-center">
+          <img
+            src="../static/logo.png"
+            alt="CodeStorm Logo"
+            class="w-12 h-12 object-contain filter drop-shadow-lg"
+          />
         </a>
 
-        <!-- Mobile menu button -->
-        <button
-          id="mobile-menu-button"
-          class="lg:hidden text-white hover:text-red-primary transition-colors duration-300"
-        >
-          <i class="fas fa-bars text-xl"></i>
-        </button>
-
-        <!-- Desktop Navigation -->
-        <ul class="hidden lg:flex items-center space-x-8">
-          <li>
-            <a
-              href="#home"
-              class="text-white hover:text-red-primary hover:bg-red-primary/20 px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105"
-              >Home</a
-            >
-          </li>
-          <li>
-            <a
-              href="#about"
-              class="text-white hover:text-red-primary hover:bg-red-primary/20 px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105"
-              >About</a
-            >
-          </li>
-          <li>
-            <a
-              href="/codeissance"
-              class="text-white hover:text-red-primary hover:bg-red-primary/20 px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105"
-              >Codeissance</a
-            >
-          </li>
-          <li>
-            <a
-              href="#past-events"
-              class="text-white hover:text-red-primary hover:bg-red-primary/20 px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105"
-              >Past Events</a
-            >
-          </li>
-          <li>
-            <a
-              href="#follow-us"
-              class="text-white hover:text-red-primary hover:bg-red-primary/20 px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105"
-              >Follow Us</a
-            >
-          </li>
-        </ul>
-
-        <!-- Mobile Navigation -->
-        <div
-          id="mobile-menu"
-          class="absolute top-full left-0 right-0 mt-2 bg-black/90 backdrop-blur-lg rounded-2xl border border-red-primary/20 lg:hidden hidden"
-        >
-          <ul class="flex flex-col space-y-2 p-4">
+        <!-- Navigation items at extreme right -->
+        <div class="flex items-center">
+          <ul class="hidden lg:flex items-center space-x-4">
             <li>
               <a
                 href="#home"
-                class="block text-white hover:text-red-primary hover:bg-red-primary/20 px-4 py-3 rounded-lg transition-all duration-300"
+                class="text-white text-lg font-bold hover:text-red-primary hover:bg-red-primary/20 px-2 py-1 rounded-lg transition-all duration-300"
                 >Home</a
               >
             </li>
             <li>
               <a
                 href="#about"
-                class="block text-white hover:text-red-primary hover:bg-red-primary/20 px-4 py-3 rounded-lg transition-all duration-300"
+                class="text-white text-lg font-bold hover:text-red-primary hover:bg-red-primary/20 px-2 py-1 rounded-lg transition-all duration-300"
                 >About</a
               >
             </li>
             <li>
               <a
                 href="/codeissance"
-                class="block text-white hover:text-red-primary hover:bg-red-primary/20 px-4 py-3 rounded-lg transition-all duration-300"
+                class="text-white text-lg font-bold hover:text-red-primary hover:bg-red-primary/20 px-2 py-1 rounded-lg transition-all duration-300"
                 >Codeissance</a
               >
             </li>
             <li>
               <a
                 href="#past-events"
-                class="block text-white hover:text-red-primary hover:bg-red-primary/20 px-4 py-3 rounded-lg transition-all duration-300"
+                class="text-white text-lg font-bold hover:text-red-primary hover:bg-red-primary/20 px-2 py-1 rounded-lg transition-all duration-300"
                 >Past Events</a
               >
             </li>
             <li>
               <a
                 href="#follow-us"
-                class="block text-white hover:text-red-primary hover:bg-red-primary/20 px-4 py-3 rounded-lg transition-all duration-300"
+                class="text-white text-lg font-bold hover:text-red-primary hover:bg-red-primary/20 px-2 py-1 rounded-lg transition-all duration-300"
                 >Follow Us</a
               >
             </li>
           </ul>
+
+          <!-- Mobile menu button -->
+          <button
+            id="mobile-menu-button"
+            class="lg:hidden text-white hover:text-red-primary transition-colors duration-300 ml-2"
+          >
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
         </div>
       </div>
     </nav>
@@ -171,14 +204,29 @@
       ></canvas>
 
       <div class="relative z-10 space-y-8 animate-fade-in-up">
-        <h1 class="text-6xl md:text-8xl font-black tracking-wider animate-glow">
-          CODESTORM
-        </h1>
-        <p
-          class="text-2xl md:text-4xl text-red-primary font-bold tracking-wide animate-float"
-        >
-          Scripting the Storm!
-        </p>
+        <!-- Logo Container -->
+        <div class="flex flex-col items-center space-y-8">
+          <!-- Logo -->
+          <img
+            src="../static/logo.png"
+            alt="CodeStorm Logo"
+            class="w-40 h-40 md:w-48 md:h-48 object-contain animate-float filter drop-shadow-2xl"
+          />
+
+          <!-- Regular Title (no typewriter effect) -->
+          <h1 class="text-6xl md:text-8xl font-black tracking-wider">
+            CodeStorm
+          </h1>
+
+          <!-- Typewriter Tagline remains if you want -->
+          <div class="typewriter-container">
+            <p
+              class="text-2xl md:text-4xl text-red-primary font-bold tracking-wide typewriter-tagline"
+            >
+              #Scripting the Storm!
+            </p>
+          </div>
+        </div>
         <a
           href="/codeissance"
           class="inline-block bg-gradient-to-r from-red-primary to-white text-black font-bold text-xl px-12 py-4 rounded-full shadow-2xl hover:shadow-red-primary/50 transform hover:scale-110 hover:-rotate-2 transition-all duration-300 animate-bounce-slow"
@@ -473,7 +521,7 @@
     >
       <div class="max-w-4xl mx-auto text-center">
         <div
-          class="bg-dark-bg/80 backdrop-blur-lg rounded-3xl shadow-2xl border border-red-primary/20 p-12 md:p-16 transform hover:scale-105 transition-all duration-500"
+          class="bg-dark-bg/80 backdrop-blur-lg rounded-xl shadow-2xl border-2 border-red-primary/30 p-8 md:p-12 mx-auto w-full max-w-2xl transition-all duration-500"
         >
           <h2
             class="text-5xl md:text-6xl font-black text-red-primary mb-12 animate-fade-in-up"
@@ -482,6 +530,7 @@
           </h2>
 
           <div class="flex justify-center space-x-12 md:space-x-16">
+            <!-- Social links here -->
             <a
               href="https://www.instagram.com/tsec_codestorm/"
               class="group transform hover:scale-125 hover:-rotate-12 transition-all duration-300"
@@ -495,7 +544,6 @@
                 Instagram
               </div>
             </a>
-
             <a
               href="https://www.facebook.com/tsec.codestorm/"
               class="group transform hover:scale-125 hover:-rotate-12 transition-all duration-300"
@@ -509,7 +557,6 @@
                 Facebook
               </div>
             </a>
-
             <a
               href="https://www.linkedin.com/company/tsec-codestorm/"
               class="group transform hover:scale-125 hover:-rotate-12 transition-all duration-300"
@@ -587,39 +634,24 @@
           }
         });
       });
-    </script>
 
-    <!-- Cursor Spotlight JS -->
-    <script>
-      // Create spotlight overlay
-      const spotlight = document.createElement("div");
-      spotlight.id = "cursor-spotlight";
-      document.body.appendChild(spotlight);
+      // Restore default cursor
+      document.body.style.cursor = "default";
 
-      // Create custom cursor sphere
-      const cursorSphere = document.createElement("div");
-      cursorSphere.id = "cursor-sphere";
-      document.body.appendChild(cursorSphere);
+      // Handle typewriter animation completion
+      setTimeout(() => {
+        const titleElement = document.querySelector(".typewriter-text");
+        if (titleElement) {
+          titleElement.classList.add("animation-complete");
+        }
+      }, 6000); // 1s delay + 4s animation + 1s buffer
 
-      document.addEventListener("mousemove", (e) => {
-        // Update spotlight position
-        spotlight.style.background = `
-          radial-gradient(
-            circle 400px at ${e.clientX}px ${e.clientY}px,
-            transparent 0%,
-            rgba(0,0,0,0.05) 30%,
-            rgba(0,0,0,0.4) 70%,
-            rgba(0,0,0,0.6) 100%
-          )
-        `;
-
-        // Update cursor sphere position
-        cursorSphere.style.left = e.clientX - 15 + "px";
-        cursorSphere.style.top = e.clientY - 15 + "px";
-      });
-
-      // Hide default cursor
-      document.body.style.cursor = "none";
+      setTimeout(() => {
+        const taglineElement = document.querySelector(".typewriter-tagline");
+        if (taglineElement) {
+          taglineElement.classList.add("animation-complete");
+        }
+      }, 4000); // 3s animation + 1s buffer
 
       // Intersection Observer for fade-in animations
       const observerOptions = {
@@ -656,18 +688,23 @@
       resizeCanvas();
       window.addEventListener("resize", resizeCanvas);
 
-      // Particle system
-      const particles = [];
-      const particleCount = 80;
-      const connectionDistance = 120;
+      // Enhanced Particle system for full hero coverage with red and white particles
+      const redParticles = [];
+      const whiteParticles = [];
+      const particleCount = 75; // Reduced per color since we have two sets
+      const connectionDistance = 150;
 
-      class Particle {
+      class RedParticle {
         constructor() {
-          this.x = Math.random() * canvas.width;
+          // Red particles mainly on the right side (red gradient area)
+          this.x = Math.random() * (canvas.width * 0.7) + canvas.width * 0.3;
           this.y = Math.random() * canvas.height;
-          this.vx = (Math.random() - 0.5) * 0.5;
-          this.vy = (Math.random() - 0.5) * 0.5;
-          this.size = Math.random() * 2 + 1;
+          this.vx = (Math.random() - 0.5) * 0.8;
+          this.vy = (Math.random() - 0.5) * 0.8;
+          this.size = Math.random() * 3 + 1;
+          this.opacity = Math.random() * 0.8 + 0.2;
+          this.pulseSpeed = Math.random() * 0.02 + 0.01;
+          this.pulseOffset = Math.random() * Math.PI * 2;
         }
 
         update() {
@@ -675,77 +712,233 @@
           this.x += this.vx;
           this.y += this.vy;
 
-          // Mouse attraction
+          // Enhanced mouse attraction with stronger force
           const dx = mouseX - this.x;
           const dy = mouseY - this.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 200) {
-            const force = (200 - distance) / 200;
-            this.vx += (dx / distance) * force * 0.03;
-            this.vy += (dy / distance) * force * 0.03;
+          if (distance < 250) {
+            const force = (250 - distance) / 250;
+            this.vx += (dx / distance) * force * 0.05;
+            this.vy += (dy / distance) * force * 0.05;
           }
 
-          // Boundary check
-          if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-          if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+          // Boundary wrapping
+          if (this.x < -10) this.x = canvas.width + 10;
+          if (this.x > canvas.width + 10) this.x = -10;
+          if (this.y < -10) this.y = canvas.height + 10;
+          if (this.y > canvas.height + 10) this.y = -10;
 
-          // Keep particles within bounds
-          this.x = Math.max(0, Math.min(canvas.width, this.x));
-          this.y = Math.max(0, Math.min(canvas.height, this.y));
+          // Damping and random movement
+          this.vx *= 0.995;
+          this.vy *= 0.995;
+          this.vx += (Math.random() - 0.5) * 0.01;
+          this.vy += (Math.random() - 0.5) * 0.01;
 
-          // Damping
-          this.vx *= 0.98;
-          this.vy *= 0.98;
+          // Pulsing opacity effect
+          this.opacity =
+            (Math.sin(Date.now() * this.pulseSpeed + this.pulseOffset) + 1) *
+              0.4 +
+            0.2;
         }
 
         draw() {
           ctx.beginPath();
           ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-          ctx.fillStyle = "rgba(225, 6, 0, 0.8)";
+          ctx.fillStyle = `rgba(225, 6, 0, ${this.opacity})`;
+
+          // Enhanced glow effect
+          ctx.shadowColor = "#e10600";
+          ctx.shadowBlur = this.size * 3;
           ctx.fill();
 
-          // Add glow effect
-          ctx.shadowColor = "#e10600";
-          ctx.shadowBlur = 10;
+          // Additional inner glow
+          ctx.shadowBlur = this.size * 6;
+          ctx.shadowColor = "rgba(255, 255, 255, 0.3)";
           ctx.fill();
+
           ctx.shadowBlur = 0;
         }
       }
 
-      // Create particles
-      for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
+      class WhiteParticle {
+        constructor() {
+          // White particles mainly on the left side (dark gradient area)
+          this.x = Math.random() * (canvas.width * 0.7);
+          this.y = Math.random() * canvas.height;
+          this.vx = (Math.random() - 0.5) * 0.8;
+          this.vy = (Math.random() - 0.5) * 0.8;
+          this.size = Math.random() * 3 + 1;
+          this.opacity = Math.random() * 0.8 + 0.2;
+          this.pulseSpeed = Math.random() * 0.02 + 0.01;
+          this.pulseOffset = Math.random() * Math.PI * 2;
+        }
+
+        update() {
+          // Move particles
+          this.x += this.vx;
+          this.y += this.vy;
+
+          // Enhanced mouse attraction with stronger force
+          const dx = mouseX - this.x;
+          const dy = mouseY - this.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 250) {
+            const force = (250 - distance) / 250;
+            this.vx += (dx / distance) * force * 0.05;
+            this.vy += (dy / distance) * force * 0.05;
+          }
+
+          // Boundary wrapping
+          if (this.x < -10) this.x = canvas.width + 10;
+          if (this.x > canvas.width + 10) this.x = -10;
+          if (this.y < -10) this.y = canvas.height + 10;
+          if (this.y > canvas.height + 10) this.y = -10;
+
+          // Damping and random movement
+          this.vx *= 0.995;
+          this.vy *= 0.995;
+          this.vx += (Math.random() - 0.5) * 0.01;
+          this.vy += (Math.random() - 0.5) * 0.01;
+
+          // Pulsing opacity effect
+          this.opacity =
+            (Math.sin(Date.now() * this.pulseSpeed + this.pulseOffset) + 1) *
+              0.4 +
+            0.2;
+        }
+
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`; // White color
+
+          // Enhanced glow effect
+          ctx.shadowColor = "#ffffff";
+          ctx.shadowBlur = this.size * 3;
+          ctx.fill();
+
+          // Additional inner glow with slight blue tint
+          ctx.shadowBlur = this.size * 6;
+          ctx.shadowColor = "rgba(200, 220, 255, 0.4)"; // Subtle cool white glow
+          ctx.fill();
+
+          ctx.shadowBlur = 0;
+        }
       }
 
-      // Draw connections
+      // Create particles for both colors
+      for (let i = 0; i < particleCount; i++) {
+        redParticles.push(new RedParticle());
+        whiteParticles.push(new WhiteParticle());
+      }
+
+      // Enhanced connection drawing with multiple line types for both colors
       function drawConnections() {
-        for (let i = 0; i < particles.length; i++) {
-          for (let j = i + 1; j < particles.length; j++) {
-            const dx = particles[i].x - particles[j].x;
-            const dy = particles[i].y - particles[j].y;
+        // Red particle connections
+        for (let i = 0; i < redParticles.length; i++) {
+          for (let j = i + 1; j < redParticles.length; j++) {
+            const dx = redParticles[i].x - redParticles[j].x;
+            const dy = redParticles[i].y - redParticles[j].y;
             const distance = Math.sqrt(dx * dx + dy * dy);
 
             if (distance < connectionDistance) {
               const opacity =
                 (connectionDistance - distance) / connectionDistance;
+
+              // Main red connection lines
               ctx.beginPath();
-              ctx.moveTo(particles[i].x, particles[i].y);
-              ctx.lineTo(particles[j].x, particles[j].y);
-              ctx.strokeStyle = `rgba(225, 6, 0, ${opacity * 0.3})`;
-              ctx.lineWidth = 1;
+              ctx.moveTo(redParticles[i].x, redParticles[i].y);
+              ctx.lineTo(redParticles[j].x, redParticles[j].y);
+              ctx.strokeStyle = `rgba(225, 6, 0, ${opacity * 0.4})`;
+              ctx.lineWidth = opacity * 2;
+              ctx.stroke();
+
+              // Secondary red glow lines for closer particles
+              if (distance < connectionDistance * 0.6) {
+                ctx.beginPath();
+                ctx.moveTo(redParticles[i].x, redParticles[i].y);
+                ctx.lineTo(redParticles[j].x, redParticles[j].y);
+                ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.2})`;
+                ctx.lineWidth = opacity * 1;
+                ctx.stroke();
+              }
+            }
+          }
+        }
+
+        // White particle connections
+        for (let i = 0; i < whiteParticles.length; i++) {
+          for (let j = i + 1; j < whiteParticles.length; j++) {
+            const dx = whiteParticles[i].x - whiteParticles[j].x;
+            const dy = whiteParticles[i].y - whiteParticles[j].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < connectionDistance) {
+              const opacity =
+                (connectionDistance - distance) / connectionDistance;
+
+              // Main white connection lines
+              ctx.beginPath();
+              ctx.moveTo(whiteParticles[i].x, whiteParticles[i].y);
+              ctx.lineTo(whiteParticles[j].x, whiteParticles[j].y);
+              ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.4})`;
+              ctx.lineWidth = opacity * 2;
+              ctx.stroke();
+
+              // Secondary white glow lines for closer particles
+              if (distance < connectionDistance * 0.6) {
+                ctx.beginPath();
+                ctx.moveTo(whiteParticles[i].x, whiteParticles[i].y);
+                ctx.lineTo(whiteParticles[j].x, whiteParticles[j].y);
+                ctx.strokeStyle = `rgba(200, 220, 255, ${opacity * 0.3})`;
+                ctx.lineWidth = opacity * 1;
+                ctx.stroke();
+              }
+            }
+          }
+        }
+
+        // Cross-color connections (red to white) for interesting interactions
+        for (let i = 0; i < redParticles.length; i++) {
+          for (let j = 0; j < whiteParticles.length; j++) {
+            const dx = redParticles[i].x - whiteParticles[j].x;
+            const dy = redParticles[i].y - whiteParticles[j].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < connectionDistance * 0.7) {
+              // Shorter range for cross-color
+              const opacity =
+                (connectionDistance * 0.7 - distance) /
+                (connectionDistance * 0.7);
+
+              // Pink connection lines between red and white
+              ctx.beginPath();
+              ctx.moveTo(redParticles[i].x, redParticles[i].y);
+              ctx.lineTo(whiteParticles[j].x, whiteParticles[j].y);
+              ctx.strokeStyle = `rgba(255, 182, 193, ${opacity * 0.3})`; // Light pink blend
+              ctx.lineWidth = opacity * 1.5;
               ctx.stroke();
             }
           }
         }
       }
 
-      // Animation loop
+      // Enhanced animation loop with background effects for red and white particles
       function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // Create trailing effect instead of full clear
+        ctx.fillStyle = "rgba(0, 0, 0, 0.03)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // Update and draw particles
-        particles.forEach((particle) => {
+        // Update and draw red particles
+        redParticles.forEach((particle) => {
+          particle.update();
+          particle.draw();
+        });
+
+        // Update and draw white particles
+        whiteParticles.forEach((particle) => {
           particle.update();
           particle.draw();
         });
@@ -753,15 +946,42 @@
         // Draw connections
         drawConnections();
 
+        // Add ambient glow effects
+        addAmbientEffects();
+
         requestAnimationFrame(animate);
       }
 
-      // Track mouse movement
+      // Add ambient background effects
+      function addAmbientEffects() {
+        // Subtle background pulse
+        const time = Date.now() * 0.001;
+        const pulseIntensity = (Math.sin(time) + 1) * 0.1;
+
+        // Add gradient overlay for depth
+        const gradient = ctx.createRadialGradient(
+          canvas.width / 2,
+          canvas.height / 2,
+          0,
+          canvas.width / 2,
+          canvas.height / 2,
+          canvas.width * 0.8
+        );
+        gradient.addColorStop(0, `rgba(225, 6, 0, ${pulseIntensity * 0.1})`);
+        gradient.addColorStop(1, "transparent");
+
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
+
+      // Track mouse movement for particles
       document.addEventListener("mousemove", (e) => {
         const rect = canvas.getBoundingClientRect();
         mouseX = e.clientX - rect.left;
         mouseY = e.clientY - rect.top;
       });
+
+      // Removed custom cursor implementation - using normal cursor
 
       // Start animation
       animate();
@@ -836,6 +1056,38 @@
           }
         }
       });
+
+      // Stacked Carousel Functionality (Newly Added)
+      let currentStackedSlide = 0;
+      const totalStackedSlides = 3; // Update this based on the number of stacked slides
+      const stackedCarousel = document.getElementById("stacked-carousel");
+
+      function updateStackedCarousel() {
+        const translateX = -currentStackedSlide * 100;
+        stackedCarousel.style.transform = `translateX(${translateX}%)`;
+      }
+
+      function nextStackedSlide() {
+        currentStackedSlide = (currentStackedSlide + 1) % totalStackedSlides;
+        updateStackedCarousel();
+      }
+
+      function prevStackedSlide() {
+        currentStackedSlide =
+          (currentStackedSlide - 1 + totalStackedSlides) % totalStackedSlides;
+        updateStackedCarousel();
+      }
+
+      // Event listeners for stacked carousel
+      document
+        .getElementById("stacked-next")
+        .addEventListener("click", nextStackedSlide);
+      document
+        .getElementById("stacked-prev")
+        .addEventListener("click", prevStackedSlide);
+
+      // Auto-advance stacked carousel every 5 seconds (separate from main carousel)
+      setInterval(nextStackedSlide, 5000);
     </script>
   </body>
 </html>

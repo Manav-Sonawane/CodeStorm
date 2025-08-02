@@ -1,47 +1,10 @@
 /* Custom styles for CodeStorm with Tailwind CSS */
 
 /* ============================ */
-/* Cursor Spotlight Glow Layer */
+/* Corner Spotlights */
 /* ============================ */
 
-#cursor-spotlight {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 9999;
-  background: radial-gradient(
-    circle 400px at 50% 50%,
-    transparent 0%,
-    rgba(0, 0, 0, 0.5) 100%
-  );
-  transition: background 0.1s cubic-bezier(0.4, 0, 0.2, 1);
-  mix-blend-mode: normal;
-}
-
-/* Custom Cursor Sphere */
-#cursor-sphere {
-  position: fixed;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(225, 6, 0, 0.6) 0%,
-    rgba(225, 6, 0, 0.4) 50%,
-    rgba(255, 255, 255, 0.3) 70%,
-    transparent 100%
-  );
-  border: 3px solid rgba(225, 6, 0, 0.9);
-  backdrop-filter: blur(1px);
-  pointer-events: none;
-  z-index: 10000;
-  transition: transform 0.1s ease;
-  box-shadow: 0 0 11px rgba(225, 6, 0, 0.8), 0 0 22px rgba(225, 6, 0, 0.4),
-    inset 0 0 11px rgba(255, 255, 255, 0.2);
-}
+/* Styles for corner spotlights are handled dynamically in JavaScript */
 
 /* Animated Background Canvas */
 #background-canvas {
@@ -54,16 +17,7 @@
   opacity: 0.6;
 }
 
-/* Hide cursor on interactive elements */
-a,
-button,
-.btn {
-  cursor: none !important;
-}
-
-#cursor-sphere:hover {
-  transform: scale(1.2);
-}
+/* Normal cursor behavior restored */
 
 /* Smooth scroll behavior */
 html {
@@ -109,7 +63,7 @@ html {
 
 /* Gradient text effect */
 .gradient-text {
-  background: linear-gradient(45deg, #e10600, #ff4444, #ffffff);
+  background: linear-gradient(90deg, #e10600, #ff4444, #ffffff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -129,47 +83,8 @@ html {
 }
 
 /* ============================ */
-/* Cursor Spotlight Glow Layer */
+/* Custom Cursor Removed - Using Normal Cursor */
 /* ============================ */
-
-#cursor-spotlight {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 9999;
-  background: radial-gradient(
-    circle 400px at 50% 50%,
-    transparent 0%,
-    rgba(0, 0, 0, 0.5) 100%
-  );
-  transition: background 0.1s cubic-bezier(0.4, 0, 0.2, 1);
-  mix-blend-mode: normal;
-}
-
-/* Custom Cursor Sphere */
-#cursor-sphere {
-  position: fixed;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(225, 6, 0, 0.6) 0%,
-    rgba(225, 6, 0, 0.4) 50%,
-    rgba(255, 255, 255, 0.3) 70%,
-    transparent 100%
-  );
-  border: 3px solid rgba(225, 6, 0, 0.9);
-  backdrop-filter: blur(1px);
-  pointer-events: none;
-  z-index: 10000;
-  transition: transform 0.1s ease;
-  box-shadow: 0 0 11px rgba(225, 6, 0, 0.8), 0 0 22px rgba(225, 6, 0, 0.4),
-    inset 0 0 11px rgba(255, 255, 255, 0.2);
-}
 
 /* Floating Glassy Navbar */
 .navbar {
@@ -295,17 +210,6 @@ html {
 .fade-in-section.visible {
   opacity: 1;
   transform: translateY(0);
-}
-
-/* Hide cursor on interactive elements */
-a,
-button,
-.btn {
-  cursor: none !important;
-}
-
-#cursor-sphere:hover {
-  transform: scale(1.2);
 }
 
 /* Enhanced card hover effects */
