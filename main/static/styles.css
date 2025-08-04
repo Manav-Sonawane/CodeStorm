@@ -1,30 +1,31 @@
-/* Custom styles for CodeStorm with Tailwind CSS */
-
-/* ============================ */
-/* Corner Spotlights */
-/* ============================ */
-
-/* Styles for corner spotlights are handled dynamically in JavaScript */
-
-/* Animated Background Canvas */
-#background-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  opacity: 0.6;
-}
-
-/* Normal cursor behavior restored */
-
-/* Smooth scroll behavior */
+/* ===== Global & Base Styles ===== */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
-/* Section fade in animations */
+body {
+  font-family: "Inter", sans-serif;
+  cursor: default;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ===== Full Page Background ===== */
+#background-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+/* ===== Fade-in Animation ===== */
 .fade-in-section {
   opacity: 0;
   transform: translateY(50px);
@@ -36,32 +37,30 @@ html {
   transform: translateY(0);
 }
 
-/* Custom scrollbar hiding */
+/* ===== Custom Scrollbar Hide ===== */
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
 
-/* Enhanced animations */
+/* ===== Pulse Glow Animation ===== */
 @keyframes pulse-glow {
   0%,
   100% {
-    box-shadow: 0 0 20px rgba(225, 6, 0, 0.5);
+    box-shadow: 0 0 12px rgba(225, 6, 0, 0.5);
   }
   50% {
-    box-shadow: 0 0 40px rgba(225, 6, 0, 0.8), 0 0 60px rgba(225, 6, 0, 0.4);
+    box-shadow: 0 0 24px rgba(225, 6, 0, 0.9);
   }
 }
-
 .animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
+  animation: pulse-glow 1.5s ease-in-out infinite;
 }
 
-/* Gradient text effect */
+/* ===== Gradient Text Effect ===== */
 .gradient-text {
   background: linear-gradient(90deg, #e10600, #ff4444, #ffffff);
   -webkit-background-clip: text;
@@ -69,24 +68,67 @@ html {
   background-clip: text;
 }
 
-/* Glass morphism effect */
+/* ===== Glassmorphism Utility ===== */
 .glass {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Hover glow effect */
+/* ===== Hover Glow Effect ===== */
 .hover-glow:hover {
   box-shadow: 0 0 30px rgba(225, 6, 0, 0.6);
   transition: box-shadow 0.3s ease;
 }
 
-/* ============================ */
-/* Custom Cursor Removed - Using Normal Cursor */
-/* ============================ */
+/* ===== Typewriter Effects ===== */
+@keyframes typewriter {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@keyframes blink {
+  0%,
+  50% {
+    border-color: transparent;
+  }
+  51%,
+  100% {
+    border-color: #e10600;
+  }
+}
+@keyframes typewriter-tagline {
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+}
+.typewriter-text,
+.typewriter-tagline {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 4px solid #e10600;
+}
+.typewriter-text {
+  animation: typewriter 4s steps(9, end) 1s both, blink 1s infinite 1s;
+}
+.typewriter-tagline {
+  opacity: 0;
+  animation: typewriter-tagline 3s steps(21, end) 0s both, blink 1s infinite 0s;
+}
+.typewriter-text.animation-complete,
+.typewriter-tagline.animation-complete {
+  border-right: none;
+}
 
-/* Floating Glassy Navbar */
+/* ===== Navbar ===== */
 .navbar {
   position: fixed !important;
   top: 20px;
@@ -101,7 +143,6 @@ html {
   z-index: 1000;
   animation: navFloat 1s ease-out;
 }
-
 @keyframes navFloat {
   from {
     opacity: 0;
@@ -113,29 +154,16 @@ html {
   }
 }
 
-/* Hero Section - Full Height */
+/* ===== Hero Section ===== */
 .hero {
   background: linear-gradient(120deg, #000 60%, #e10600 100%);
   color: #fff;
   height: 100vh;
   min-height: 100vh;
-  animation: heroPop 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   position: relative;
-  z-index: 1;
   overflow: hidden;
+  animation: heroPop 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
-
-/* Animated Background Canvas */
-#background-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  opacity: 0.6;
-}
-
 @keyframes heroPop {
   0% {
     opacity: 0;
@@ -146,13 +174,11 @@ html {
     transform: scale(1);
   }
 }
-
 .hero h2 {
   text-shadow: 0 4px 24px #e10600cc, 0 1px 0 #000;
   animation: textGlow 2s infinite alternate;
   letter-spacing: 4px;
 }
-
 @keyframes textGlow {
   from {
     text-shadow: 0 4px 24px #e10600cc, 0 1px 0 #000;
@@ -161,143 +187,6 @@ html {
     text-shadow: 0 0px 40px #fff, 0 1px 0 #e10600;
   }
 }
-
-/* Enhanced About, Past Events, Follow Us Sections */
-.about,
-.past-events,
-.follow-us {
-  background: #181818;
-  border-radius: 1.5rem;
-  box-shadow: 0 4px 32px #000a;
-  min-height: 80vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.past-events {
-  background: linear-gradient(90deg, #111 70%, #e10600 100%);
-  overflow: visible !important;
-  position: relative;
-  padding: 5rem 2rem !important; /* Increased padding for card animations */
-}
-
-/* Past Events Container */
-.past-events .d-flex {
-  overflow-x: auto;
-  padding: 2rem 0 3rem 0; /* Extra padding for hover effects */
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  min-height: 400px; /* Ensure enough height for animations */
-}
-
-.past-events .d-flex::-webkit-scrollbar {
-  display: none;
-}
-
-/* Smooth scroll behavior */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Section fade in animations */
-.fade-in-section {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.fade-in-section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Enhanced card hover effects */
-.past-events .card {
-  border-left: 6px solid #e10600;
-  border-radius: 1rem;
-  box-shadow: 0 2px 16px #000a;
-  transition: transform 0.3s, box-shadow 0.3s;
-  will-change: transform;
-  overflow-wrap: break-word;
-  word-break: break-word;
-  margin: 1rem 0; /* Add margin for hover space */
-  position: relative;
-  z-index: 1;
-}
-
-.past-events .card:hover {
-  transform: translateY(-15px) scale(1.05) rotate(-2deg);
-  box-shadow: 0 12px 40px #e10600aa;
-  z-index: 10; /* Bring hovered card above others */
-}
-
-/* Enhanced social links */
-.follow-us a {
-  transition: color 0.3s, transform 0.3s;
-}
-
-.follow-us a:hover {
-  color: #e10600 !important;
-  transform: scale(1.3) rotate(-10deg);
-}
-
-/* Original styles for backward compatibility */
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: black;
-  padding: 1.2rem 3rem;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
-  animation: navFadeIn 1s ease;
-}
-
-@keyframes navFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-nav h1 {
-  font-size: 2.2rem;
-  letter-spacing: 2px;
-  color: #e10600;
-  font-weight: 900;
-  text-shadow: 0 2px 8px #000a;
-  transition: color 0.3s;
-}
-
-nav ul {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-}
-
-nav ul li a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 1.1rem;
-  font-weight: 500;
-  padding: 0.4rem 1rem;
-  border-radius: 4px;
-  transition: background 0.3s, color 0.3s, transform 0.2s;
-  position: relative;
-}
-
-nav ul li a:hover,
-nav ul li a:focus {
-  background: #e10600;
-  color: #fff;
-  transform: scale(1.08);
-  box-shadow: 0 2px 8px #e1060055;
-}
-
 .hero p {
   font-size: 1.5rem;
   color: #e10600;
@@ -305,7 +194,6 @@ nav ul li a:focus {
   letter-spacing: 2px;
   font-weight: 600;
 }
-
 .hero button {
   background: linear-gradient(90deg, #e10600 60%, #fff 100%);
   color: #111;
@@ -320,37 +208,144 @@ nav ul li a:focus {
   outline: none;
   letter-spacing: 1px;
 }
-
 .hero button:hover {
   background: linear-gradient(90deg, #fff 60%, #e10600 100%);
   color: #e10600;
   transform: scale(1.07) rotate(-2deg);
 }
 
-/* About Section */
-.about {
-  color: #fff;
-  padding: 3rem 2rem;
-  margin: 2rem auto;
-  border-radius: 18px;
-  max-width: 900px;
-  animation: fadeInUp 1.2s;
+/* ===== About Section ===== */
+.about-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #000 0%,
+    #1a1a1a 25%,
+    #2d2d2d 50%,
+    #1a1a1a 75%,
+    #000 100%
+  );
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
 }
 
-.about h2 {
+/* Fancy background patterns */
+.about-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+      circle at 20% 80%,
+      rgba(225, 6, 0, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(225, 6, 0, 0.05) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 40% 40%,
+      rgba(255, 255, 255, 0.02) 0%,
+      transparent 50%
+    );
+  z-index: 1;
+}
+
+.about-section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(
+      45deg,
+      rgba(225, 6, 0, 0.03) 25%,
+      transparent 25%
+    ),
+    linear-gradient(-45deg, rgba(225, 6, 0, 0.03) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(225, 6, 0, 0.03) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(225, 6, 0, 0.03) 75%);
+  background-size: 60px 60px;
+  background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.about-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+}
+
+.about-title {
   color: #e10600;
-  font-size: 2.2rem;
-  margin-bottom: 1rem;
-  letter-spacing: 2px;
+  font-size: 4rem;
+  font-weight: 900;
+  margin-bottom: 2rem;
+  letter-spacing: 3px;
+  text-shadow: 0 4px 20px rgba(225, 6, 0, 0.3);
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.about p {
-  font-size: 1.15rem;
-  line-height: 1.7;
-  color: #eee;
+.about-content {
+  font-size: 1.4rem;
+  line-height: 1.8;
+  color: #e0e0e0;
+  max-width: 800px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
 }
 
-/* Carousel Section */
+.about-highlight {
+  color: #e10600;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(225, 6, 0, 0.3);
+}
+
+.about-divider {
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #e10600, #ff6b6b);
+  margin: 2rem auto;
+  border-radius: 2px;
+  opacity: 0;
+  transform: scaleX(0);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s;
+}
+
+/* Animation trigger class */
+.about-section.animate .about-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about-section.animate .about-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about-section.animate .about-divider {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* ===== Carousel ===== */
 .carousel {
   display: flex;
   gap: 2rem;
@@ -364,7 +359,6 @@ nav ul li a:focus {
 .carousel::-webkit-scrollbar {
   display: none;
 }
-
 .carousel-item {
   min-width: 320px;
   max-width: 350px;
@@ -378,16 +372,11 @@ nav ul li a:focus {
   animation: cardPop 1s;
   margin-bottom: 1rem;
   box-sizing: border-box;
-  overflow-wrap: break-word;
-  word-break: break-word;
 }
-
 .carousel-item:hover {
   transform: translateY(-10px) scale(1.04) rotate(-1deg);
   box-shadow: 0 8px 32px #e10600aa;
-  z-index: 2;
 }
-
 @keyframes cardPop {
   from {
     opacity: 0;
@@ -399,43 +388,24 @@ nav ul li a:focus {
   }
 }
 
-/* Follow Us Section */
-.follow-us {
-  color: #fff;
-  padding: 2.5rem 2rem 2rem 2rem;
-  margin: 2rem auto;
-  border-radius: 18px;
-  max-width: 900px;
-  text-align: center;
-  animation: fadeInUp 1.7s;
+/* Glowing Active Dot */
+.carousel-dot.active {
+  box-shadow: 0 0 12px rgba(225, 6, 0, 0.7);
+  animation: pulse-glow 1.5s ease-in-out infinite;
 }
 
-.follow-us h2 {
-  color: #e10600;
-  font-size: 2rem;
-  margin-bottom: 1.2rem;
-  letter-spacing: 2px;
-}
-
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 2.5rem;
-  margin-top: 1rem;
-}
-
+/* ===== Social Icons ===== */
 .social-links a {
   color: #fff;
   font-size: 2.2rem;
   transition: color 0.3s, transform 0.2s;
 }
-
 .social-links a:hover {
   color: #e10600;
   transform: scale(1.2) rotate(-8deg);
 }
 
-/* Footer */
+/* ===== Footer ===== */
 footer {
   background: #000;
   color: #fff;
@@ -448,7 +418,7 @@ footer {
   animation: fadeInUp 2s;
 }
 
-/* Animations */
+/* ===== Animations ===== */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -460,39 +430,21 @@ footer {
   }
 }
 
-/* Responsive adjustments */
+/* ===== Responsive Adjustments ===== */
 @media (max-width: 900px) {
   .navbar {
     width: 95% !important;
     border-radius: 25px !important;
   }
-
-  .about,
-  .past-events,
-  .follow-us {
-    min-height: 70vh;
-    padding: 2rem 1rem !important;
+  .about-section {
+    padding: 3rem 1.5rem;
   }
-
-  .past-events .d-flex {
-    flex-direction: column !important;
-    gap: 2rem !important;
-    min-height: auto !important;
-    padding: 1rem 0 !important;
+  .about-title {
+    font-size: 3rem;
   }
-
-  .past-events .card {
-    max-width: 100% !important;
-    min-width: 0 !important;
-    margin: 0.5rem 0 !important;
+  .about-content {
+    font-size: 1.2rem;
   }
-
-  nav {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem 1.5rem;
-  }
-
   .carousel {
     flex-direction: column;
     gap: 1.5rem;
@@ -504,28 +456,25 @@ footer {
     width: 100%;
   }
 }
-
 @media (max-width: 600px) {
   .hero h2 {
     font-size: 3rem !important;
   }
-
   .hero p {
     font-size: 1.2rem !important;
   }
-
-  .about,
-  .past-events,
-  .follow-us {
-    min-height: 60vh;
-    padding: 1.5rem 0.8rem !important;
-    border-radius: 0.7rem;
+  .about-section {
+    padding: 2rem 1rem;
   }
-
+  .about-title {
+    font-size: 2.5rem;
+  }
+  .about-content {
+    font-size: 1.1rem;
+  }
   nav h1 {
     font-size: 1.5rem;
   }
-
   .btn {
     font-size: 1rem !important;
     padding: 0.7rem 1.5rem !important;
